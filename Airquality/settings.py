@@ -54,10 +54,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     #'cnblogs.middlewares.MyCustomDownloaderMiddleware': 543,
-    'cnblogs.middlewares.RandomUserAgent': 1,
-    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-   #'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
-    'cnblogs.middlewares.ProxyMiddleware': 100,
+
 }
 
 # Enable or disable extensions
@@ -78,7 +75,7 @@ ITEM_PIPELINES = {
 # The initial download delay
 AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
+AUTOTHROTTLE_MAX_DELAY = 1
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
 #AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0

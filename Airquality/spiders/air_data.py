@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from lxml import etree
-
+import time
 from Airquality.items import AirqualityItem
 
 
@@ -19,6 +19,7 @@ class AirDataSpider(scrapy.Spider):
         for city in cities:
             url='http://www.pm25.in'+city
             print(url)
+            time.sleep(3)
             yield scrapy.Request(url, callback=self.parse_city)
 
     def parse_city(self,response):
