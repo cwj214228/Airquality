@@ -5,6 +5,7 @@ import time
 from Airquality.items import AirqualityItem
 
 
+
 class AirDataSpider(scrapy.Spider):
     name = 'air_data'
     allowed_domains = ['www.pm25.in']
@@ -18,12 +19,12 @@ class AirDataSpider(scrapy.Spider):
         cities=selector.xpath('.//div[@class="all"]/div[2]//li/a/@href')
         for city in cities:
             url='http://www.pm25.in'+city
-            print(url)
-            time.sleep(3)
+            time.sleep(1)
             yield scrapy.Request(url, callback=self.parse_city)
 
     def parse_city(self,response):
-        selector = etree.HTML(response.body)
+
+        selector = etree.HTML(response.body.decode('utf-8'))
 
         adress = selector.xpath('.//tbody/tr/td[1]/text()')
         AQI = selector.xpath('.//tbody/tr/td[2]/text()')

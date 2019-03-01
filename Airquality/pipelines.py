@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import xlsxwriter
 import time
+
+
+
 from twisted.enterprise import adbapi
 # Define your item pipelines here
 #
@@ -16,10 +19,11 @@ class AirqualityPipeline(object):
 
     def process_item(self, item, spider):
         print(item['adress'])
-        #self.num0 = self.num0 + 1
-        #row = 'A' + str(self.num0)
-        #data = [item['goods_list'], item['price_list'], item['UnitPrice_list'], time.strftime("%Y-%m-%d")]
-        #self.worksheet.write_row(row, data)
+        self.num0 = self.num0 + 1
+        row = 'A' + str(self.num0)
+        data = [item['adress'], item['AQI'], item['type'],item['first'],item['PM_25'],item['PM_10'],
+                item['CO'],item['NO2'],item['O3_1'],item['O3_8'],item['SO2'],time.strftime("%Y-%m-%d")]
+        self.worksheet.write_row(row, data)
         return item
 
     def close_spider(self, spider):
